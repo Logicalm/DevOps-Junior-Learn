@@ -1,0 +1,89 @@
+Если при запуске у нас графическая оболочка виснет и ничего не происходит, то это значит, что 
+Иногда может возникать ошибка при запуске GNOME в версии убунты с виртуализацией, если мы видим такой отчет об ошибке:
+Чтобы перейти в терминал, нужно нажать (ctrl+alt+F2)
+
+#root@ivan-VirtualBox:/home/ivan# systemctl status gdm
+× gdm.service - GNOME Display Manager
+     Loaded: loaded (/usr/lib/systemd/system/gdm.service; static)
+     Active: failed (Result: core-dump) since Tue 2024-12-17 14:44:28 +04; 7min ago
+   Duration: 130ms
+    Process: 2544 ExecStartPre=/usr/share/gdm/generate-config (code=exited, status=0/SUCCESS)
+    Process: 2550 ExecStart=/usr/sbin/gdm3 (code=dumped, signal=TRAP)
+   Main PID: 2550 (code=dumped, signal=TRAP)
+        CPU: 52ms
+
+Dec 17 14:44:28 ivan-VirtualBox systemd[1]: gdm.service: Scheduled restart job, restart counter is at 5.
+Dec 17 14:44:28 ivan-VirtualBox systemd[1]: gdm.service: Start request repeated too quickly.
+Dec 17 14:44:28 ivan-VirtualBox systemd[1]: gdm.service: Failed with result 'core-dump'.
+Dec 17 14:44:28 ivan-VirtualBox systemd[1]: Failed to start gdm.service - GNOME Display Manager.
+Dec 17 14:44:28 ivan-VirtualBox systemd[1]: gdm.service: Triggering OnFailure= dependencies.
+
+#root@ivan-VirtualBox:/home/ivan# dmesg | grep gdm
+[    6.327745] traps: gdm3[1307] trap int3 ip:7083b8e676a1 sp:7ffe3e43e920 error:0 in libglib-2.0.so.0.8000.0[7083b8e23000+a0000]
+[    7.897955] traps: gdm3[1697] trap int3 ip:74e1055086a1 sp:7ffeab504dd0 error:0 in libglib-2.0.so.0.8000.0[74e1054c4000+a0000]
+[    9.528881] traps: gdm3[1954] trap int3 ip:7c429e8e96a1 sp:7ffcc67b3a30 error:0 in libglib-2.0.so.0.8000.0[7c429e8a5000+a0000]
+[   10.988391] traps: gdm3[1992] trap int3 ip:7702243196a1 sp:7fffa28b1d50 error:0 in libglib-2.0.so.0.8000.0[7702242d5000+a0000]
+[   12.750546] traps: gdm3[2028] trap int3 ip:7e0b899136a1 sp:7fffbe8444a0 error:0 in libglib-2.0.so.0.8000.0[7e0b898cf000+a0000]
+[  678.140627] traps: gdm3[2397] trap int3 ip:749e6354a6a1 sp:7ffd51faf3a0 error:0 in libglib-2.0.so.0.8000.0[749e63506000+a0000]
+[  679.454959] traps: gdm3[2436] trap int3 ip:79640000e6a1 sp:7ffd3a08e550 error:0 in libglib-2.0.so.0.8000.0[7963fffca000+a0000]
+[  681.096546] traps: gdm3[2476] trap int3 ip:704ba08e86a1 sp:7fff0c44c8b0 error:0 in libglib-2.0.so.0.8000.0[704ba08a4000+a0000]
+[  682.455185] traps: gdm3[2512] trap int3 ip:7240b9bdc6a1 sp:7ffd76525f30 error:0 in libglib-2.0.so.0.8000.0[7240b9b98000+a0000]
+[  683.964105] traps: gdm3[2550] trap int3 ip:7e72511656a1 sp:7ffe64cd1bc0 error:0 in libglib-2.0.so.0.8000.0[7e7251121000+a0000]
+
+То скорее всего всё связано с libglib-2.0.
+Установим заново библиотеку libglib-2.0.so:
+
+#sudo apt-get install --reinstall libglib2.0-0
+
+Переустановим GDM:
+
+#sudo apt-get install --reinstall gdm3
+   
+Убедимся, что все зависимости установлены корректно, обновим и исправим зависимости:
+
+#sudo apt-get update
+#sudo apt-get upgrade --fix-missing
+#sudo apt-get install -f
+
+Ребутаем gdm и смотрим его статус:
+
+#systemctl reboot gdm
+#systemctl status gdm
+
+● gdm.service - GNOME Display Manager
+     Loaded: loaded (/usr/lib/systemd/system/gdm.service; static)
+     Active: active (running) since Tue 2024-12-17 15:01:04 +04; 16ms ago
+    Process: 7060 ExecStartPre=/usr/share/gdm/generate-config (code=exited, status=0/SUCCESS)
+   Main PID: 7065 (gdm3)
+      Tasks: 9 (limit: 6405)
+     Memory: 2.6M (peak: 2.6M)
+        CPU: 47ms
+     CGroup: /system.slice/gdm.service
+             ├─7065 /usr/sbin/gdm3
+             └─7071 "gdm-session-worker [pam/gdm-launch-environment]"
+
+Dec 17 15:01:04 ivan-VirtualBox systemd[1]: gdm.service: Scheduled restart job, restart counter is at 1.
+Dec 17 15:01:04 ivan-VirtualBox systemd[1]: Starting gdm.service - GNOME Display Manager...
+Dec 17 15:01:04 ivan-VirtualBox systemd[1]: Started gdm.service - GNOME Display Manager.
+Dec 17 15:01:04 ivan-VirtualBox gdm-launch-environment][7071]: pam_unix(gdm-launch-environment:session
+
+НО! После ребута системы может быть такая же проблема, проделаем следующие шаги:
+   
+Полная переустановка GNOME и библиотек:
+
+#sudo apt-get purge gdm3 libglib2.0-0
+#sudo apt-get install gdm3 libglib2.0-0
+
+Исключаем конфликты версий:
+
+#sudo apt-get update && sudo apt-get dist-upgrade
+   
+Если есть зависимости, которые необходимо устранить:
+
+#sudo apt-get -f install
+
+Сбросим настройки gdm по умолчанию:
+
+#sudo dpkg-reconfigure gdm3
+
+Можно ещё выбрать gmd3 как дисплейный менеджер(необязательно), перезапускаем gdm, заходим в графику и оттуда перезапускаем систему.
