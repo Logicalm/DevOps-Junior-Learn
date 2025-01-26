@@ -1,0 +1,84 @@
+#Подключаемся к репозиторию Zabbix и сказивает отттуда архив
+wget https://repo.zabbix.com/zabbix/7.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_latest+ubuntu22.04_all.deb
+
+#Распаковываем архив
+dpkg -i zabbix-release_latest+ubuntu22.04_all.deb
+
+#Получаем обновления
+apt update 
+
+#После того как установочный архив был скачан и распаковн нужно через apt установить сервисы:
+apt install zabbix-server-mysql zabbix-frontend-php zabbix-apache-conf zabbix-sql-scripts zabbix-agent
+
+ВАЖНО!!!!
+На этом этапе может возникнуть ошибку из-за недостающих зависимостей, а именно:
+
+#unsatisfied dependencies:
+#zabbix-server-mysql : Depends: libldap-2.5-0 (>= 2.5.4) but it is not installable
+#                       Recommends: snmpd but it is not going to be installed
+#Error: Unable to correct problems, you have held broken packages.
+#!!! ЭТО ГОВОРИТ О ТОМ ЧТО У НАС НЕ УСТАНОВЛЕНЫ ЗАВИСИМОСТИ НЕОБХОДИМЫЕ ДЛЯ zabbix-server-mysql
+Для того чтобы это пофиксить нужно зайти на официальную инструкцию Zabbix и установить недостающие зависимости
+https://www.zabbix.com/documentation/3.0/en/manual/installation/install_from_packages/repository_installation
+
+ wget https://repo.zabbix.com/zabbix/3.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_3.0-2+bionic_all.deb 
+ dpkg -i zabbix-release_3.0-2+bionic_all.deb 
+ apt-get update
+
+У меня ещё была проблема что не встал zabbix-sql-scripts, после проделанных действий возвращаемся в изначальный репозиторий и устанавливаем его:
+wget https://repo.zabbix.com/zabbix/7.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_latest+ubuntu22.04_all.deb
+apt install zabbix-sql-scripts
+
+#После установки всех сервисов необходимо создать БД:
+mysql -uroot -p
+password
+#Тут нужно ввести пароль
+
+#Создаём БД
+mysql> create database zabbix character set utf8mb4 collate utf8mb4_bin;
+
+#Создаём пользователя в БД и в графе password указываем свой пароль
+mysql> create user zabbix@localhost identified by 'password';
+
+#Предоставляем все права для этого пользователя
+mysql> grant all privileges on zabbix.* to zabbix@localhost;
+mysql> set global log_bin_trust_function_creators = 1;
+mysql> quit; 
+
+#Импортируем схему:
+zcat /usr/share/zabbix-sql-scripts/mysql/server.sql.gz | mysql --default-character-set=utf8mb4 -uzabbix -p zabbix 
+
+#Меняем ранее указаные параметры
+mysql -uroot -p
+password
+mysql> set global log_bin_trust_function_creators = 0;
+mysql> quit;
+
+#Меняем конфиг zabbix и ставим свой пароль:
+vim /etc/zabbix/zabbix_server.conf
+
+DBPassword=password
+
+Перезапускаем zabbix-server и ставим его на автозапуск:
+systemctl restart zabbix-server zabbix-agent apache2
+systemctl enable zabbix-server zabbix-agent apache2 
+
+
+ПРОБЛЕМЫ ЗАББИКС 
+
+***(Поправить, вернуться в ошибке, расписать)1.Если в заббикс невозможно зайти на его начальной странице, то есть в его первоначальной настройке, а именно, в моменте подключения к database. 
+Скорее у вас пустая табличка user или users, нужно посмотреть, что там у вас. ***
+
+
+2. Если при входе в заббикс мы указываем условный логин Admin и пароль 123 и не можем зайти, при этом наша ошибка выглядит так 
+"Incorrect user name or password or account is temporarily blocked."
+То это значит, что в новой версии заббикса криво работает хеширование паролей, что мы делаем, чтобы это исправить
+Мы смотрим, что у нас в:
+htpasswd -bnBC 10 "" ваш_пароль | tr -d ':'
+там будет что-то вроде: @2321&&FSdfsASSSAfkvjcn@@0129d$$32fdsffdsf
+Идем в mysql с этим:
+mysql -u root -p
+> update users set passwd='@2321&&FSdfsASSSAfkvjcn@@0129d$$32fdsffdsf' where username='Admin';
+> exit
+systemctl restart zabbix-server
+И пробуем подключиться вводя свой пароль и Admin
