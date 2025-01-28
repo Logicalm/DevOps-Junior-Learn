@@ -1,0 +1,175 @@
+
+### **Ad-Hoc Команды:** 
+*ansible all -m **ping*** - Пинг всех серверов.
+*ansible staging -m **setup*** - Выдает все данные о сервере.
+*ansible all -m **shell** -a "uptime"* - Запускает любую команду shell.
+*ansible all -m **command** -a "uptime"* - Запускает команду, но не через shell. 
+*ansible all -m **copy** -a "src=privet.txt dest=/home mode=777"* -b - Копируем файл.
+- -b используется для выполнения команды под sudo. 
+
+*ansible all -m **file** -a "path=/home/privet.txt state=absent"* - Удаление файла.
+*ansible all -m **get_url** -a "url=https://..."* - Скачать что угодно с интернета.
+*ansible all -m **yum** -a "name=stress state=installed" -b* - Установить какое-то приложение. Чтобы удалить приложение *state=removed*.
+*ansible all -m **uri** -a "url=https://... return_content=yes"* - Команда для проверки веб-адреса.
+*ansible all -m **service** -a "url=httpd state=started enabled=yes "* - Команда для установки httpd сервера. 
+- *enabled=yes* - Будет перезапускаться при рестарте сервера.
+*ansible all -m **raw** -a "sudo apt update && sudo apt install -y python3"* - Команда, если на управляемом узле нет python3. Поможет установить. 
+
+>Можно также добавлять флаги -vvv для того, чтобы получить больше информации. 
+
+---
+### **Tasks:**
+**debug** - Позволяет вывести msg или просто переменную.
+**set_fact: full_message=**"{{message1}} {{message2}}" - объединяет 2 переменные в новую full_message. 
+**register** - чтобы запомнить вывод и положить в переменную. Можно еще обращаться к определенному полю **results.stdout**.
+
+>Можно в Playbook определить переменную и передавать её как extra-vars. Для этого необходимо использовать флаг **-e**
+
+**import** - сразу же копирует часть из указанного файла в плейбук.
+**include** -  копирует только тогда, когда идет выполнение плейбука, то есть не сразу.
+**delegate_to** - Выполнить на определенном сервере, позволит допустим вывести ответ на запускаемой машине, а не на worker:
+```yaml
+- name: Server hostname
+  shell: echo This server {{ inventory_hostname }} ...
+  delegate_to: 127.0.0.1
+```
+**run_once: true** - запустится только 1 раз, по умолчанию на первом из inventory.
+**ignore_errors: true** - игнорировать ошибки, если они вдруг появятся. 
+**failed_when: "'World' in results.stdout"** - Выдает ошибку, когда <условие>, в данном случае когда есть слово World в выводе. 
+
+---
+>**ansible-vault create** - создать vault
+>**ansible-vault view** - просмотреть
+>**ansible-vault edit** - изменить
+>**ansible-vault rekey** - изменить пароль
+>**ansible-vault encrypt** - зашифровать файл (например playbook)
+>**ansible-vault decrypt** - расшифровать
+>**--ask-vault-pass** - запустить плейбук с указанием пароля
+>**--vault-password-file file** - считать пароль из файла
+>**ansible-vault encrypt_string** - зашифровать строку 
+
+---
+## **Роли:** 
+ansible-galaxy init <role_name>
+
+.
+└── **deploy_apache_web**
+    ├── **defaults**
+    │   └── main.yml
+    ├── **files**
+    ├── **handlers**
+    │   └── main.yml
+    ├── **meta**
+    │   └── main.yml
+    ├── **README.md**
+    ├── **tasks**
+    │   └── main.yml
+    ├── **templates**
+    │   └── index.html
+    ├── **tests**
+    │   ├── inventory
+    │   └── test.yml
+    └── **vars**
+        └── main.yml
+ 
+---
+## **Идемпотентность** 
+Гарантирует, что повторный запуск playbook не изменит уже корректно настроенные элементы. 
+
+---
+## **Отладка**
+**--check** - Выполняет проверку без внесения изменений.
+**--diff** - Показывает различия между предполагаемыми изменениями.
+**--step** - Выполняется пошагово. 
+**--start-at-task** - Начинает выполнение playbook с указанной задачи.
+**--skip-tags** - Если есть теги, помогает их пропустить.
+
+---
+### **Пример плейбука:** 
+```Yaml
+---
+- name: Example Ansible Playbook
+  hosts: all
+  become: true
+  vars:
+    # Переменные
+    package_list:
+      - vim
+      - git
+      - curl
+    service_name: nginx
+    app_user: deploy
+    app_dir: /var/www/myapp
+    repo_url: "https://github.com/example/myapp.git"
+
+  tasks:
+    # Установка необходимых пакетов
+    - name: Install required packages
+      apt:
+        name: "{{ package_list }}"
+        state: present
+        update_cache: true
+
+    # Обеспечение присутствия пользователя
+    - name: Ensure the application user exists
+      user:
+        name: "{{ app_user }}"
+        state: present
+        create_home: true
+        shell: /bin/bash
+
+    # Убедиться, что целевая директория создана
+    - name: Ensure application directory exists
+      file:
+        path: "{{ app_dir }}"
+        state: directory
+        owner: "{{ app_user }}"
+        group: "{{ app_user }}"
+        mode: '0755'
+
+    # Клонирование репозитория
+    - name: Clone application repository
+      git:
+        repo: "{{ repo_url }}"
+        dest: "{{ app_dir }}"
+        version: main
+        force: yes
+        update: yes
+        accept_hostkey: yes
+      become_user: "{{ app_user }}"
+
+    # Создание конфигурационного файла
+    - name: Create Nginx configuration file
+      template:
+        src: templates/nginx.conf.j2
+        dest: /etc/nginx/sites-available/myapp
+        owner: root
+        group: root
+        mode: '0644'
+      notify:
+        - Restart Nginx
+
+    # Создание символической ссылки для Nginx
+    - name: Enable Nginx site
+      file:
+        src: /etc/nginx/sites-available/myapp
+        dest: /etc/nginx/sites-enabled/myapp
+        state: link
+        force: true
+      notify:
+        - Restart Nginx
+
+    # Убедиться, что сервис запущен
+    - name: Ensure Nginx is running
+      service:
+        name: "{{ service_name }}"
+        state: started
+        enabled: true
+
+  handlers:
+    - name: Restart Nginx
+      service:
+        name: nginx
+        state: restarted
+
+```
