@@ -12,7 +12,7 @@
 
 Роудмап https://roadmap.sh/devops прогресс https://roadmap.sh/devops?s=67850af77dbe4fb02630cdcd
 Девопс простым языком stepik.org/227851 
-1.
+1. Видео база
 Структура файлов и каталогов в Linux https://www.youtube.com/watch?v=WL2Xbndqy0k&t=76s
 Как создаются программы: Контроль версий Git, GitHub и Pull Requests https://www.youtube.com/watch?v=oafo50s7NKw
 Git и GitHub Курс Для Новичков https://www.youtube.com/watch?v=zZBiln_2FhM
@@ -25,7 +25,7 @@ GitLab CI/CD - Главные Основы создания CI/CD Pipeline https
 Всё что нужно знать по Ansible. Основы и не только. https://www.youtube.com/watch?v=YYjCwLs-1hA
 0.0: Вводный урок расширенного курса "Введение в DevOps" https://www.youtube.com/watch?v=hKKVX6rstvM&list=PLQoP6S9f51EZM0-WqAWAAkwAB28gnWkTb
 
-2. 
+2. Видео не база
 6.1: Ansible. Основные концепции и команды https://www.youtube.com/watch?v=tqIE0ofvwwY
 Тестирование Ansible-ролей / Кирилл Борисов https://www.youtube.com/watch?v=T4VVdkO9sCo
 Prometheus + Grafana. Настраиваем 4 golden signals https://www.youtube.com/watch?v=Q_fKb0nrfCg
