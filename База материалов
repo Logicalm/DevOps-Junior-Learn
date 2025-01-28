@@ -28,5 +28,7 @@ GitLab CI/CD - Главные Основы создания CI/CD Pipeline https
 2. 
 6.1: Ansible. Основные концепции и команды https://www.youtube.com/watch?v=tqIE0ofvwwY
 Тестирование Ansible-ролей / Кирилл Борисов https://www.youtube.com/watch?v=T4VVdkO9sCo
-Как использовать Ansible для простых и сложных задач https://vaiti.io/kak-ispolzovat-ansible-dlya-prostyh-i-slozhnyh-zadach/
 Prometheus + Grafana. Настраиваем 4 golden signals https://www.youtube.com/watch?v=Q_fKb0nrfCg
+
+3. статьи 
+Как использовать Ansible для простых и сложных задач https://vaiti.io/kak-ispolzovat-ansible-dlya-prostyh-i-slozhnyh-zadach/
