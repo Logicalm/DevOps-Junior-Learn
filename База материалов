@@ -16,6 +16,7 @@
 Структура файлов и каталогов в Linux https://www.youtube.com/watch?v=WL2Xbndqy0k&t=76s
 Как создаются программы: Контроль версий Git, GitHub и Pull Requests https://www.youtube.com/watch?v=oafo50s7NKw
 Git и GitHub Курс Для Новичков https://www.youtube.com/watch?v=zZBiln_2FhM
+Что должен знать DevOps инженер? DevOps Roadmap 2024. Выбор подписчиков https://www.youtube.com/watch?v=aNBAuQe7AOo&list=LL&index=1&t=79s
 3.1: Сетевые протоколы и серверы https://www.youtube.com/watch?v=ucd3QovVdxM
 Logstash - для чего он нужен, как он работает, и немного теории. https://www.youtube.com/watch?v=DY3G0XsvvEw 
 [Elasticsearch] Как собрать кластер Elasticsearch. Какие есть роли у нод Elasticsearch. https://www.youtube.com/watch?v=-e0M9X6uD_4
@@ -28,3 +29,4 @@ GitLab CI/CD - Главные Основы создания CI/CD Pipeline https
 6.1: Ansible. Основные концепции и команды https://www.youtube.com/watch?v=tqIE0ofvwwY
 Тестирование Ansible-ролей / Кирилл Борисов https://www.youtube.com/watch?v=T4VVdkO9sCo
 Как использовать Ansible для простых и сложных задач https://vaiti.io/kak-ispolzovat-ansible-dlya-prostyh-i-slozhnyh-zadach/
+Prometheus + Grafana. Настраиваем 4 golden signals https://www.youtube.com/watch?v=Q_fKb0nrfCg
