@@ -1,0 +1,27 @@
+Сказ о том, Как докер устанавливал
+https://docs.docker.com/engine/install/ubuntu/#install-using-the-convenience-script
+
+"Установка с помощью удобного скрипта" (но это лучше по-другому делать, но пока лень было и так работает, ХЫ) 
+Вот в этом разделе пошел на гитхаб, там было: 
+
+curl -fsSL https://get.docker.com -o get-docker.sh
+sh get-docker.sh
+
+Потом затестил его 
+
+sudo service docker start
+sudo docker run hello-world
+
+Посмотрел поднятый контейнер
+
+docker images
+
+ВСё ок. 
+
+Потом веб-сервер через контейнер поднял, кста мог ходить на него только по апишнику(узнать почему) 
+
+docker run --name mynginx -d -p 8080:80 nginx
+
+name mynginx даёт контейнеру понятное имя (mynginx).
+d (detached) запускает контейнер в фоновом режиме.
+p 808080 значит: «Привяжи порт 8080 на хосте к порту 80 внутри контейнера».
