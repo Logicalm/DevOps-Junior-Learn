@@ -1,27 +1,72 @@
-Сказ о том, Как докер устанавливал
+Сказ о том, Как докер устанавливал и контейнеры поднимал
 https://docs.docker.com/engine/install/ubuntu/#install-using-the-convenience-script
 
 "Установка с помощью удобного скрипта" (но это лучше по-другому делать, но пока лень было и так работает, ХЫ) 
 Вот в этом разделе пошел на гитхаб, там было: 
 
-curl -fsSL https://get.docker.com -o get-docker.sh
-sh get-docker.sh
+   #curl -fsSL https://get.docker.com -o get-docker.sh
+   #sh get-docker.sh
 
 Потом затестил его 
 
-sudo service docker start
-sudo docker run hello-world
+   #sudo service docker start
+   #sudo docker run hello-world
 
 Посмотрел поднятый контейнер
 
-docker images
+   #docker images
 
 ВСё ок. 
 
 Потом веб-сервер через контейнер поднял, кста мог ходить на него только по апишнику(узнать почему) 
 
-docker run --name mynginx -d -p 8080:80 nginx
+    #docker run --name mynginx -d -p 8080:80 nginx
 
 name mynginx даёт контейнеру понятное имя (mynginx).
 d (detached) запускает контейнер в фоновом режиме.
 p 808080 значит: «Привяжи порт 8080 на хосте к порту 80 внутри контейнера».
+
+
+Скачал пулл образ 
+
+#docker pull prostodevops/docker-basics-checker:1.0
+
+Запустил контейнер под именем checker 
+
+  #docker run -d --name checker -e KEY=devops2025 prostodevops/docker-basics-checker:1.0 (1.0 это у нас указание версии)
+
+  -d запускает контейнер в фоновом режиме (detached mode).
+   - --name checker задает имя контейнера checker.
+   - -e KEY=devops2025 передает переменную окружения KEY со значением devops2025.
+
+Смотрим 
+
+   #docker ps
+
+#docker logs checker (там будет код внутри логов)
+
+Удаляем контейнер 
+
+   #docker stop checker
+   #docker rm checker
+   
+Качаем другой пулл образ 
+
+   #docker pull prostodevops/docker-basics-checker:2.0
+
+   #docker run -d -p 9999:80 --name secretserver -e KEY=supersecret prostodevops/docker-basics-checker:2.0
+
+- -p 9999:80 перенаправляет порт 9999 на вашем хосте к порту 80 внутри контейнера.
+- --name secretserver задает контейнеру читаемое имя.
+- -e KEY=supersecret передает переменную окружения KEY со значением supersecret.
+
+   #docker ps
+   Проверяем его работу 
+   #curl http://localhost:9999 (там будет секретный код в коде html страницы) 
+
+   #docker stop secretserver
+   #docker rm secretserver
+
+   
+
+   
