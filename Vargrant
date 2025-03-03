@@ -1,0 +1,53 @@
+Берем его отсюда 
+https://www.vagrantup.com/
+
+***Я работал не с самой новой версией Vargant(указать версию) и после установки мне била ошибка, что придурок не может работать с определенными версиями Виртуалбокса, он в рот берет только у следующих версий:
+Vagrant has detected that you have a version of VirtualBox installed
+that is not supported by this version of Vagrant. Please install one of
+the supported versions listed below to use Vagrant:
+
+4.0, 4.1, 4.2, 4.3, 5.0, 5.1, 5.2, 6.0, 6.1
+Ссылка, где может лежать 6.1 
+https://gitlab.com/deusops/documentation/vagrant/-/blob/main/README.md?ref_type=heads 
+В строке "Установка VirtualBox, Vagrant+Ubuntu и Vagrantfile" содержится она, качаем***
+
+**Портал с доступными дистр для Vargant, но работает только под впн.**
+https://portal.cloud.hashicorp.com/vagrant/discover
+
+Для чего он нужен? 
+Ему нужны виртуальные машины, он не является виртуальной машиной. Ему требуется виртуальная машина, он будет ей управлять, виртуал боксом или каким-то другим гипервизором.
+Качаем и смотрим его версию в повершелле или cmd. 
+
+~vagrant --version
+
+Если версия есть, значит он установлен. 
+
+Создаем любую папочку, где хотим и переходим в неё в повершелле. 
+И там пишем команду
+~vagrant init ubuntu/trusty64 
+Мы можем выбрать любой дистрибутив доступный на самом сайте Vargant
+После установки он выдаст такую информацию:
+"A `Vagrantfile` has been placed in this directory. You are now
+ready to `vagrant up` your first virtual environment! Please read
+the comments in the Vagrantfile as well as documentation on
+`vagrantup.com` for more information on using Vagrant."
+
+И после этого мы пишем следующую команду, которая чуть ниже
+
+Остальные полезные команды:
+~vagrant up **это необязательно**->(Запускать в консоли Cygwin, он установлен: C:\cygwin64)
+
+~vagrant status
+
+~vagrant suspend
+Остановка виртуальной машины
+"Заморозка времени", ресурсоемкий, после остановки остаются зарезервированными ресурсы оперативной памяти, жесткого диска, процессора.
+
+~vagrant halt
+Соответствует выключению обычной физической машины. Результаты работы записываются на виртуальный жесткий диск, а все остальные ресурсы, оперативная память, процессор, возвращаются хост-системе.
+В отличие от vagrant suspend, потребуется пройти полный цикл старта операционной системы.
+Полностью освободить зарезервированную под виртуальную машину память
+
+~vagrant destroy
+Все следы присутствия в системе будут уничтожены. При этом образ, который был загружен при установке, не удаляется, т. к. он...
+
