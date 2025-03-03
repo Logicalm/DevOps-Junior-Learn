@@ -1,7 +1,8 @@
 Берем его отсюда 
 https://www.vagrantup.com/
 
-***Я работал не с самой новой версией Vargant(указать версию) и после установки мне била ошибка, что придурок не может работать с определенными версиями Виртуалбокса, он в рот берет только у следующих версий:
+***Я работал не с самой новой версией Vargant(Installed Version: 2.2.19
+Latest Version: 2.4.3) и после установки мне била ошибка, что придурок не может работать с определенными версиями Виртуалбокса, он в рот берет только у следующих версий:
 Vagrant has detected that you have a version of VirtualBox installed
 that is not supported by this version of Vagrant. Please install one of
 the supported versions listed below to use Vagrant:
