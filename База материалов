@@ -18,6 +18,7 @@
 **ПЛЕЙЛИСТ!!!-> Про линукс https://youtube.com/playlist?list=PLYl91BhaOf-kkXWweBzgOw555he6S7SUs&si=kcefSSlWeC0RihYQ
 Как создаются программы: Контроль версий Git, GitHub и Pull Requests https://www.youtube.com/watch?v=oafo50s7NKw
 Git и GitHub Курс Для Новичков https://www.youtube.com/watch?v=zZBiln_2FhM
+Кто такой DevOps-инженер // Что должен уметь, какие задачи, сколько платят https://www.youtube.com/watch?v=iNgn4VhSEjg
 Что должен знать DevOps инженер? DevOps Roadmap 2024. Выбор подписчиков https://www.youtube.com/watch?v=aNBAuQe7AOo&list=LL&index=1&t=79s
 3.1: Сетевые протоколы и серверы https://www.youtube.com/watch?v=ucd3QovVdxM
 Logstash - для чего он нужен, как он работает, и немного теории. https://www.youtube.com/watch?v=DY3G0XsvvEw 
@@ -39,15 +40,23 @@ Prometheus + Grafana. Настраиваем 4 golden signals https://www.youtub
 GitLab CI/CD Runner простой проек https://www.youtube.com/watch?v=uSTOerrWNaY
 Пишем реальный CI/CD пайплайн | GITLAB CI/CD на практике https://www.youtube.com/watch?v=prOarIqL5Qs&t=53s
 Устройство сети в Kubernetes https://www.youtube.com/watch?v=sVE6qsj3bx8&t=25s
+HAProxy - Бесплатный LoadBalancer - Установка и Конфигурация https://www.youtube.com/watch?v=FmV_GMC_Sw8
 
-3. статьи 
+3. КОДЫ,Computer Science.
+Решал LeetCode Задачи на Протяжение 14 ДНЕЙ https://www.youtube.com/watch?v=gIUuch4NlCM
+Мини-курс Computer Science. Часть 1. Двоичная система. Как переводить числа? https://www.youtube.com/watch?v=P-JsU44DH2c
+Ты смотришь только Простые видео по программированию не просто так https://www.youtube.com/watch?v=l4Olb-z_0TU
+Я СОЗДАЛ АРМИЮ ИИ агентов и они работают за меня [ШАБЛОН для N8N] https://www.youtube.com/watch?v=kUNn6-ONJG8
+
+4. Собесы
+https://www.youtube.com/watch?v=4YLKMAbxRhw
+
+5. статьи 
+Разбираем методы проксирования на основе HAProxy https://habr.com/ru/articles/244027/
 Как использовать Ansible для простых и сложных задач https://vaiti.io/kak-ispolzovat-ansible-dlya-prostyh-i-slozhnyh-zadach/
 Сказ о том, как я за год решил более 600 leetcode задач https://habr.com/ru/articles/786184/
 Тут чет про обсидиан хз нужен он или нет https://www.ixbt.com/live/sw/obzor-obsidian-soft-dlya-zametok-kotoryy-sozdaet-vtoroy-mozg.html
 
-*КОДЫЫ*
-
-Ты смотришь только Простые видео по программированию не просто так https://www.youtube.com/watch?v=l4Olb-z_0TU
 
 **ИНСТРУМЕНТЫ РОФЛ**
 https://gpt-chatbot.ru/
