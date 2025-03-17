@@ -20,6 +20,8 @@
 Git и GitHub Курс Для Новичков https://www.youtube.com/watch?v=zZBiln_2FhM
 Кто такой DevOps-инженер // Что должен уметь, какие задачи, сколько платят https://www.youtube.com/watch?v=iNgn4VhSEjg
 Что должен знать DevOps инженер? DevOps Roadmap 2024. Выбор подписчиков https://www.youtube.com/watch?v=aNBAuQe7AOo&list=LL&index=1&t=79s
+Путь в DevOps: полное руководство для новичков с НУЛЯ - 2025 https://www.youtube.com/watch?v=8kvMficZrIo
+Как практиковаться Junior DevOps-инженеру https://www.youtube.com/watch?v=_rfYnaXXg3k&t=13s
 3.1: Сетевые протоколы и серверы https://www.youtube.com/watch?v=ucd3QovVdxM
 Logstash - для чего он нужен, как он работает, и немного теории. https://www.youtube.com/watch?v=DY3G0XsvvEw 
 [Elasticsearch] Как собрать кластер Elasticsearch. Какие есть роли у нод Elasticsearch. https://www.youtube.com/watch?v=-e0M9X6uD_4
@@ -50,13 +52,31 @@ HAProxy - Бесплатный LoadBalancer - Установка и Конфиг
 
 4. Собесы
 https://www.youtube.com/watch?v=4YLKMAbxRhw
+Реальное собеседования DevOps инженер Junior++ https://www.youtube.com/watch?v=oUeOLfwfQOU
+СОБЕСЕДОВАНИЕ DevOps вопросы и ответы по Linux https://www.youtube.com/watch?v=8carjFjJMkc
 
 5. статьи 
 Разбираем методы проксирования на основе HAProxy https://habr.com/ru/articles/244027/
 Как использовать Ansible для простых и сложных задач https://vaiti.io/kak-ispolzovat-ansible-dlya-prostyh-i-slozhnyh-zadach/
 Сказ о том, как я за год решил более 600 leetcode задач https://habr.com/ru/articles/786184/
 Тут чет про обсидиан хз нужен он или нет https://www.ixbt.com/live/sw/obzor-obsidian-soft-dlya-zametok-kotoryy-sozdaet-vtoroy-mozg.html
-
+Autoscaling — инструмент автоматического вертикального масштабирования ресурсов (CPU|RAM|HDD) https://habr.com/ru/companies/netangels/articles/312174/
+Автоскейлинг приложений Kubernetes при помощи Prometheus и KEDA https://habr.com/ru/companies/vk/articles/515114/
 
 **ИНСТРУМЕНТЫ РОФЛ**
 https://gpt-chatbot.ru/
+Tech & Soft https://etogeek.dev/pages/tech/#-soft
+
+
+**ПРИКОЛЫ** 
+
+The Vim Experience https://www.youtube.com/watch?v=h4ZQfr-q3EA
+Vibe coding, MCP, модели научились врать | Влад Тен https://www.youtube.com/watch?v=ggHSXm_jVDs
+Чудесная CMS: HackTheBox Sea https://www.youtube.com/watch?v=D-pE5eP9tJQ
+Про рест апи и рпс https://www.youtube.com/shorts/jh9_2CsIZ30
+Я стал разработчиком за 365 дней! Душная история как я вошел в IT... https://www.youtube.com/watch?v=pELVzXvZfq4
+
+**ГИТХАБЫ**
+
+https://github.com/etoosamoe/dotfiles/blob/master/software.md
+https://github.com/etoosamoe/eto-app
