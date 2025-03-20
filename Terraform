@@ -20,3 +20,5 @@ vpc = true
 resource "google_compute_address" "my_static_ip_address" {  
 name = "ip-for-my-web-page"  
 }
+
+**посмотреть могу локально заюзать или нет**
