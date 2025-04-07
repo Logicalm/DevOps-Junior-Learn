@@ -70,6 +70,11 @@ https://www.youtube.com/watch?v=4YLKMAbxRhw
 Autoscaling — инструмент автоматического вертикального масштабирования ресурсов (CPU|RAM|HDD) https://habr.com/ru/companies/netangels/articles/312174/
 Автоскейлинг приложений Kubernetes при помощи Prometheus и KEDA https://habr.com/ru/companies/vk/articles/515114/
 
+
+6. Документации
+
+Ansible https://docs.ansible.com/ansible/4/dev_guide/testing_compile.html
+
 **ИНСТРУМЕНТЫ РОФЛ**
 https://gpt-chatbot.ru/
 Tech & Soft https://etogeek.dev/pages/tech/#-soft
