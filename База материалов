@@ -19,6 +19,7 @@
 Как создаются программы: Контроль версий Git, GitHub и Pull Requests https://www.youtube.com/watch?v=oafo50s7NKw
 Git и GitHub Курс Для Новичков https://www.youtube.com/watch?v=zZBiln_2FhM
 Кто такой DevOps-инженер // Что должен уметь, какие задачи, сколько платят https://www.youtube.com/watch?v=iNgn4VhSEjg
+ПРОДАКШЕН Инструменты РЕАЛЬНОЙ разработки: Kubernetes, Grafana, CI/CD, Harbor и др https://www.youtube.com/watch?v=jqQmWRSIeEM&t=3s
 Что должен знать DevOps инженер? DevOps Roadmap 2024. Выбор подписчиков https://www.youtube.com/watch?v=aNBAuQe7AOo&list=LL&index=1&t=79s
 Путь в DevOps: полное руководство для новичков с НУЛЯ - 2025 https://www.youtube.com/watch?v=8kvMficZrIo
 Что такое Terraform? https://www.youtube.com/watch?v=ph4iNA0Uuko
@@ -37,12 +38,14 @@ GitLab CI/CD - Главные Основы создания CI/CD Pipeline https
 Деплой веб-приложения на практическом примере. Проще, чем кажется https://www.youtube.com/watch?v=uLp-zgset00
 
 2. Видео не база
+Docker под капотом | chroot, runc, unshare, ns, cgroups https://www.youtube.com/watch?v=t4PEoHAvf1A&t=40s
 6.1: Ansible. Основные концепции и команды https://www.youtube.com/watch?v=tqIE0ofvwwY
 Тестирование Ansible-ролей / Кирилл Борисов https://www.youtube.com/watch?v=T4VVdkO9sCo
 Prometheus + Grafana. Настраиваем 4 golden signals https://www.youtube.com/watch?v=Q_fKb0nrfCg
 GitLab CI/CD Runner простой проек https://www.youtube.com/watch?v=uSTOerrWNaY
 Пишем реальный CI/CD пайплайн | GITLAB CI/CD на практике https://www.youtube.com/watch?v=prOarIqL5Qs&t=53s
 Устройство сети в Kubernetes https://www.youtube.com/watch?v=sVE6qsj3bx8&t=25s
+Проброс портов, брутфорс wordpress и jenkins! Прохожу машину Internal на TryHackMe https://www.youtube.com/watch?v=IgLGiJ00a1I&t=1s
 HAProxy - Бесплатный LoadBalancer - Установка и Конфигурация https://www.youtube.com/watch?v=FmV_GMC_Sw8
 
 3. КОДЫ,Computer Science.
@@ -76,9 +79,12 @@ Tech & Soft https://etogeek.dev/pages/tech/#-soft
 The Vim Experience https://www.youtube.com/watch?v=h4ZQfr-q3EA
 Vibe coding, MCP, модели научились врать | Влад Тен https://www.youtube.com/watch?v=ggHSXm_jVDs
 Чудесная CMS: HackTheBox Sea https://www.youtube.com/watch?v=D-pE5eP9tJQ
+О библиотеке ncurses https://www.youtube.com/watch?v=c-KaQ_hYDzc&t=359s
 Про рест апи и рпс https://www.youtube.com/shorts/jh9_2CsIZ30
 Home Lab Automation with Terraform, Ansible, and CI/CD pipelines! https://www.youtube.com/watch?v=r5RckLwzkfc
+Как накрутить опыт в резюме | «Ультимативный гайд»  https://www.youtube.com/watch?v=EPuogJuYsvY&t=3s
 ВАЛЮТНЫЕ УДАЛЕНКИ — Полный гайд https://www.youtube.com/watch?v=weA0ESpxuTU
+КАК ВЗЛАМЫВАЮТ САЙТЫ? Гайд с нуля - XSS и SQL инъекция https://www.youtube.com/watch?v=827vVw41IE0&t=55s
 Я стал разработчиком за 365 дней! Душная история как я вошел в IT... https://www.youtube.com/watch?v=pELVzXvZfq4
 
 **ГИТХАБЫ**
