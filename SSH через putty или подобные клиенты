@@ -9,3 +9,5 @@ chmod 600 authorized_keys
 Если хотим подключиться через visual studio, то опять идем в keygenputty потом conversion далее Exprort openssh Key и его уже выбираем в VS. 
 
 А вообще есть такой ролик https://www.youtube.com/watch?v=Ld9xoFVeiS0
+
+Такое есть еще https://selectel.ru/blog/tutorials/how-to-generate-ssh/
