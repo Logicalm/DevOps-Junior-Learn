@@ -67,9 +67,29 @@ stage.ini => if-app 1 ansible_host=192.168.0.18 ansible_user=root
 ansible-inventory --list -i /home/ansible/linuxfactory/infra/inventory/stage.ini
 ansible-inventory --list -i /home/ansible/linuxfactory/infra/inventory/production.ini
 
+Далее если мы хотим выполнить 
+ansible -i /home/ansible/linuxfactory/infra/inventory/stage.ini -m ping web
+То нам потребуется либо сгенерировать ключи на сервере, который отвечает за ансибл, либо уже взять существующий id_rsa.pub и перенести его в /root/.ssh/authorized_key на целевой сервер
+Не стесняемся, добавляем в новую строчку новый ключ, даже если там уже есть ключи
 
+Как должен выглядеть inventory/stage.ini 
 
+[web]
 
+if-app1 ansible_host=192.168.0.18 ansible_user=root
+
+[web:vars]
+   ansible_ssh_private_key_file=/home/ansible/.ssh/id_rsa
+
+Либо можем написать всё в одну строчку if-app1 ansible_host=192.168.0.18 ansible_user=root ansible_ssh_private_key_file=/home/ansible/.ssh/id_rsa
+Если будем писать с новой строчки, вот так 
+
+[web]
+
+if-app1 ansible_host=192.168.0.18 ansible_user=root
+ansible_ssh_private_key_file=/home/ansible/.ssh/id_rsa
+
+То это вызовет ошибку, так как он будет думать что ansible_ssh это хост
 
 
 
