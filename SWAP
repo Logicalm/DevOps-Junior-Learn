@@ -1,0 +1,57 @@
+В роли common/tasks создаем таску
+
+- block:
+    - name: create a swap file
+      shell: fallocate -l {{ swap_size }} /swapfile
+      args:
+        creates: /swapfile
+
+    - name: set the correct permissions
+      file:
+        path: /swapfile
+        owner: root
+        group: root
+        mode: '0600'
+
+    - name: make the file a swap file
+      shell: mkswap /swapfile
+      when: ansible_facts.swapfree_mb == 0
+
+    - name: enable the swap file
+      shell: swapon /swapfile
+      when: ansible_facts.swapfree_mb == 0
+
+    - name: add swap file to fstab
+      mount:
+        name: none
+        src: /swapfile
+        fstype: swap
+        opts: sw
+        passno: 0
+        dump: 0
+        state: present
+
+Потом в group_vars делаем два файла web.yml и db.yml в зависимости от того, как у вас называются группы серваков
+
+Туда пишем желаемый размер 
+
+---
+swap_size: 1G
+
+   sudo swapoff /swapfile
+      sudo rm /swapfile
+   
+
+ЗАпускаем плейбук 
+ansible-playbook -i inventory/production.ini production.yml -vvv
+     
+
+чтобы удалить свап используем это 
+
+sudo swapoff /swapfile
+sudo rm /swapfile
+
+
+
+
+
