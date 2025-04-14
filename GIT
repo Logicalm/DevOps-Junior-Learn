@@ -1,3 +1,19 @@
+git init
+git remote add origin git@gitlab.com:linuxfactory/ansible-roles.git
+git add .
+git commit -m "add roles"
+git push -u origin master
+
+
+
+
+
+
+
+
+
+
+
 Генерация ключа для GIT в Linux:
 $ssh-keygen -t ed25519 -C "your_email@example.com"
 Сохранить его желательно в /home/ssh/user/.ssh/
